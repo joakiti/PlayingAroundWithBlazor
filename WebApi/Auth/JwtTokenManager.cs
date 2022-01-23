@@ -28,7 +28,7 @@ namespace WebApi.Auth
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, userName));
 
-            if (userName == "tom")
+            if (userName == "admin")
             {
                 claims.Add(new Claim(ClaimTypes.Role, "admin"));
             }
@@ -50,7 +50,7 @@ namespace WebApi.Auth
         public string GetUserInfoByToken(string token)
         {
             if (string.IsNullOrWhiteSpace(token)) return null;
-            var jwtToken = tokenHandler.ReadToken(token.Replace("\"", string.Empty)) as JwtSecurityToken;
+            var jwtToken = tokenHandler.ReadJwtToken(token);
             var claim = jwtToken.Claims.FirstOrDefault(x => x.Type == "unique_name");
             if (claim != null) return claim.Value;
 
@@ -66,10 +66,9 @@ namespace WebApi.Auth
             try
             {
                 tokenHandler.ValidateToken(
-                token.Replace("\"", string.Empty),
+                token,
                 new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(secrectKey),
                     ValidateLifetime = true,
                     ValidateAudience = false,

@@ -9,8 +9,8 @@ namespace WebApi.Auth
     {
         private Dictionary<string, string> credentials = new Dictionary<string, string>()
         {
-            { "frank", "password" },
-            { "tom", "password1" }
+            { "test", "test" },
+            { "admin", "admin" }
         };
 
         private readonly ICustomTokenManager customTokenManager;

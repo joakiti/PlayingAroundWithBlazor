@@ -16,14 +16,14 @@ namespace WebApi.Filters
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!context.HttpContext.Request.Headers.TryGetValue(TokenHeader, out var token))
+            if (!context.HttpContext.Request.Headers.TryGetValue(TokenHeader, out Microsoft.Extensions.Primitives.StringValues token))
             {
                 context.Result = new UnauthorizedResult();
                 return;
             }
 
-            var tokenManager = context.HttpContext.RequestServices.GetService(typeof(ICustomTokenManager)) as ICustomTokenManager;       
-            if (tokenManager == null || !tokenManager.VerifyToken(token))
+            var tokenManager = context.HttpContext.RequestServices.GetService(typeof(ICustomTokenManager)) as ICustomTokenManager;
+            if (tokenManager == null || !tokenManager.VerifyToken(token.ToString().Replace("\"", "")))
             {
                 context.Result = new UnauthorizedResult();
                 return;
