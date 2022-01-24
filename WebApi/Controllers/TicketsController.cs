@@ -13,7 +13,6 @@ namespace PlatformDemo.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]")]
-    [CustomTokenAuthFilter]
     public class TicketsController : ControllerBase
     {
         private readonly BugsContext db;

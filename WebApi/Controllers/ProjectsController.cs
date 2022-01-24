@@ -14,7 +14,7 @@ namespace PlatformDemo.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]")]
-    [CustomTokenAuthFilter]    
+    [Authorize]    
     public class ProjectsController : ControllerBase
     {
         private readonly BugsContext db;
