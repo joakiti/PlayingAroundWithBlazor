@@ -18,7 +18,10 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             { 
-                new ApiScope("WebAPI", "BlazorAppApi")
+                new ApiScope("WebAPI"),
+                new ApiScope("WebAPI.Write"),
+                new ApiScope("WebAPI.Read")
+
             };
 
         public static IEnumerable<Client> Clients =>
@@ -34,7 +37,7 @@ namespace IdentityServer
                         new Secret("secret".Sha256())
                     },
 
-                    AllowedScopes = { "WebApi"}
+                    AllowedScopes = { "WebAPI" }
 
                 }
             };

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{E8455405-C827-4A18-B001-E1436D9F61B8}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{53E93C58-FA43-40F0-B5AC-5B5DA56BEC82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{B2A0F1B4-8A6F-4181-8390-F72A2A986898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerTester", "IdentityServerTester\IdentityServerTester.csproj", "{E7906296-AC88-4612-94FD-B4EECBA17D4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{B2A0F1B4-8A6F-4181-8390-F72A2A986898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2A0F1B4-8A6F-4181-8390-F72A2A986898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2A0F1B4-8A6F-4181-8390-F72A2A986898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7906296-AC88-4612-94FD-B4EECBA17D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7906296-AC88-4612-94FD-B4EECBA17D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7906296-AC88-4612-94FD-B4EECBA17D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7906296-AC88-4612-94FD-B4EECBA17D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

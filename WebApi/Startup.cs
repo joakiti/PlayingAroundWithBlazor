@@ -30,6 +30,15 @@ namespace PlatformDemo
         {
             services.AddSingleton<ICustomTokenManager, JwtTokenManager>();
             services.AddSingleton<ICustomUserManager, CustomUserManager>();
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer(options => {
+                    options.Authority = "https://localhost:5001";
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+
+                });
 
             if (_env.IsDevelopment())
             {
@@ -87,6 +96,10 @@ namespace PlatformDemo
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
 
             app.UseCors();
 
