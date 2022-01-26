@@ -40,6 +40,15 @@ namespace PlatformDemo
 
                 });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("WebAPI", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "WebAPI");
+                });
+            });
+
             if (_env.IsDevelopment())
             {
                 services.AddDbContext<BugsContext>(options =>

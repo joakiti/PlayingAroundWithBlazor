@@ -21,10 +21,10 @@ namespace WebApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddOptions();
-            builder.Services.AddAuthorizationCore();
+            //builder.Services.AddOptions();
+            //builder.Services.AddAuthorizationCore();
             //builder.Services.AddSingleton<AuthenticationStateProvider, CustomTokenAuthenticationStateProvider>();
-            builder.Services.AddSingleton<AuthenticationStateProvider, JwtTokenAuthenticationStateProvider>();
+            //builder.Services.AddSingleton<AuthenticationStateProvider, JwtTokenAuthenticationStateProvider>();
 
             builder.Services.AddSingleton<ITokenRepository, TokenRepository>();
             builder.Services.AddSingleton<IWebApiExecuter>(sp => 
@@ -33,13 +33,20 @@ namespace WebApp
                     new HttpClient(),
                     sp.GetRequiredService<ITokenRepository>()));
 
-            builder.Services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
-            builder.Services.AddTransient<IAuthenticationUseCases, AuthenticationUseCases>();
+            //builder.Services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
+            //builder.Services.AddTransient<IAuthenticationUseCases, AuthenticationUseCases>();
             builder.Services.AddTransient<IProjectsScreenUseCases, ProjectsScreenUseCases>();
             builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
             builder.Services.AddTransient<ITicketRepository, TicketRepository>();
             builder.Services.AddTransient<ITicketsScreenUseCases, TicketsScreenUseCases>();
             builder.Services.AddTransient<ITicketScreenUseCases, TicketScreenUseCases>();
+
+            builder.Services.AddOidcAuthentication(options =>
+            {
+                builder.Configuration.Bind("local", options.ProviderOptions);
+
+                options.ProviderOptions.DefaultScopes.Add("WebAPI");
+            });
 
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
