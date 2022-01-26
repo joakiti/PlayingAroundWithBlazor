@@ -105,12 +105,10 @@ namespace PlatformDemo
             }
 
             app.UseRouting();
-
-            app.UseAuthentication();
-            
-            app.UseAuthorization();
-
             app.UseCors();
+
+            app.UseAuthentication();            
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

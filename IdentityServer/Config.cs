@@ -53,7 +53,8 @@ namespace IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "WebAPI"    
+                        IdentityServerConstants.StandardScopes.Email,
+                        "WebAPI"
                     }
                 }
             };
