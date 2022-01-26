@@ -5,6 +5,7 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace IdentityServer
 {
@@ -14,7 +15,9 @@ namespace IdentityServer
             new IdentityResource[]
             { 
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResource(ClaimTypes.Role, new[] {ClaimTypes.Role})
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -54,8 +57,9 @@ namespace IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "WebAPI"
-                    }
+                        "WebAPI",
+                        ClaimTypes.Role
+                    },
                 }
             };
     }

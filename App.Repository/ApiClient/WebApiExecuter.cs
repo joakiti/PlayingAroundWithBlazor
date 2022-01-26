@@ -16,6 +16,7 @@ namespace MyApp.Repository.ApiClient
         public WebApiExecuter(HttpClient httpClient)
         {
             this.httpClient = httpClient;
+            this.baseUrl = httpClient.BaseAddress.AbsoluteUri;
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));            
@@ -56,6 +57,10 @@ namespace MyApp.Repository.ApiClient
 
         private string GetUrl(string uri)
         {
+            if (baseUrl.EndsWith("/"))
+            {
+                return $"{baseUrl}{uri}";
+            }
             return $"{baseUrl}/{uri}";
         }
 
