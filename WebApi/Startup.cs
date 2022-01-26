@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -18,10 +19,12 @@ namespace PlatformDemo
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
+        private readonly IConfiguration configuration;
 
-        public Startup(IWebHostEnvironment env)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             this._env = env;
+            this.configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -54,6 +57,13 @@ namespace PlatformDemo
                 services.AddDbContext<BugsContext>(options =>
                 {
                     options.UseInMemoryDatabase("Bugs");
+                });
+            }
+            else if (_env.IsStaging() || _env.IsProduction())
+            {
+                services.AddDbContext<BugsContext>(options =>
+                {
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                 });
             }
 
